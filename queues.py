@@ -1,4 +1,4 @@
-# Building a Queue Data Type
+# BUILDING QUEUE DATA TYPE
 
 from collections import deque
 
@@ -19,7 +19,9 @@ class Queue:
     def dequeue(self):
         return self._elements.popleft()
 
-# Testing FIFO queue
+
+
+# TESTING FIFO QUEUE
 
 # fifo = Queue("1st", "2nd", "3rd")
 
@@ -30,23 +32,45 @@ class Queue:
 
 # print(len(fifo))
 
+
+
+# INSTANTIATING STACK CLASS THROUGH INHERITANCE
+
 class Stack(Queue):
     def dequeue(self):
         return self._elements.pop()
 
-# Testing LIFO Stack
+
+
+
+# TESTING LIFO STACK
 
 # lifo = Stack("1st", "2nd", "3rd")
 # for element in lifo:
 #     print(element)
 
-# Using Lists as rudimentary stack
+
+
+# USING LISTS AS RUDIMENTARY STACKS
 
 lifo = []
 lifo.append("1st")
 lifo.append("2nd")
 lifo.append("3rd")
 
-print(lifo.pop())
-print(lifo.pop())
-print(lifo.pop())
+# print(lifo.pop())
+# print(lifo.pop())
+# print(lifo.pop())
+
+
+
+# PRIORITY QUEUES USING HEAPS
+
+from heapq import heappush
+
+fruits = []
+heappush(fruits, "orange")
+heappush(fruits, "apple")
+heappush(fruits, "banana")
+
+print(fruits)
