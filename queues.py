@@ -73,4 +73,13 @@ heappush(fruits, "orange")
 heappush(fruits, "apple")
 heappush(fruits, "banana")
 
+# print(fruits)
+
+
+
+# POPPING HEAP ELEMENT
+
+from heapq import heappop
+
+print(heappop(fruits))
 print(fruits)
