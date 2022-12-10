@@ -21,11 +21,16 @@ class Queue:
 
 # Testing FIFO queue
 
-fifo = Queue("1st", "2nd", "3rd")
+# fifo = Queue("1st", "2nd", "3rd")
 
-print(len(fifo))
+# print(len(fifo))
 
-for element in fifo:
-    print(element)
+# for element in fifo:
+#     print(element)
 
-print(len(fifo))
+# print(len(fifo))
+
+class Stack(Queue):
+    def dequeue(self):
+        return self._elements.pop()
+
