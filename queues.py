@@ -2,6 +2,14 @@
 
 from collections import deque
 
+class IterableMixin:
+    def __len__(self):
+        return len(self._elements)
+
+    def __iter__(self):
+        while len(self) > 0:
+            yield self.dequeue()
+
 class Queue:
     def __init__(self, *elements):
         self._elements = deque(elements)
@@ -151,3 +159,4 @@ from queues import PriorityQueue
 # hazard_lights = Message("Hazard lights turned on")
 
 # print(wipers < hazard_lights)
+
