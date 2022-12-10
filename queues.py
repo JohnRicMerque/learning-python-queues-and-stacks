@@ -53,10 +53,10 @@ class Stack(Queue):
 
 # USING LISTS AS RUDIMENTARY STACKS
 
-lifo = []
-lifo.append("1st")
-lifo.append("2nd")
-lifo.append("3rd")
+# lifo = []
+# lifo.append("1st")
+# lifo.append("2nd")
+# lifo.append("3rd")
 
 # print(lifo.pop())
 # print(lifo.pop())
@@ -66,12 +66,12 @@ lifo.append("3rd")
 
 # PRIORITY QUEUES USING HEAPS
 
-from heapq import heappush
+# from heapq import heappush
 
-fruits = []
-heappush(fruits, "orange")
-heappush(fruits, "apple")
-heappush(fruits, "banana")
+# fruits = []
+# heappush(fruits, "orange")
+# heappush(fruits, "apple")
+# heappush(fruits, "banana")
 
 # print(fruits)
 
@@ -79,7 +79,7 @@ heappush(fruits, "banana")
 
 # POPPING HEAP ELEMENT
 
-from heapq import heappop
+# from heapq import heappop
 
 # print(heappop(fruits))
 # print(fruits)
@@ -88,9 +88,26 @@ from heapq import heappop
 
 # PYTHON TUPLE COMPARISON
 
-person1 = ("John", "Brown", 42)
-person2 = ("John", "Doe", 42)
-person3 = ("John", "Doe", 24)
+# person1 = ("John", "Brown", 42)
+# person2 = ("John", "Doe", 42)
+# person3 = ("John", "Doe", 24)
 
-print(person1 < person2)
-print(person2 < person3)
+# print(person1 < person2)
+# print(person2 < person3)
+
+
+
+# BUILDING A PRIORITY QUEUE DATA TYPE
+
+from collections import deque
+from heapq import heappop, heappush
+
+class PriorityQueue:
+    def __init__(self):
+        self._elements = []
+
+    def enqueue_with_priority(self, priority, value):
+        heappush(self._elements, (priority, value))
+
+    def dequeue(self):
+        return heappop(self._elements)
