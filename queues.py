@@ -101,17 +101,19 @@ class Stack(Queue):
 
 from collections import deque
 from heapq import heappop, heappush
+from itertools import count
 
 class PriorityQueue:
     def __init__(self):
         self._elements = []
+        self._counter = count()
 
     def enqueue_with_priority(self, priority, value):
-        heappush(self._elements, (-priority, value))
+        element = (-priority, next(self._counter), value)
+        heappush(self._elements, element)
 
     def dequeue(self):
-        return heappop(self._elements)[1]
-
+        return heappop(self._elements)[-1]
 
 
 
@@ -139,13 +141,13 @@ from queues import PriorityQueue
 
 # HANDLING CORNER CASES IN PRIORITY QUEUE
 
-from dataclasses import dataclass
+# from dataclasses import dataclass
 
-@dataclass
-class Message:
-    event: str
+# @dataclass
+# class Message:
+#     event: str
 
-wipers = Message("Windshield wipers turned on")
-hazard_lights = Message("Hazard lights turned on")
+# wipers = Message("Windshield wipers turned on")
+# hazard_lights = Message("Hazard lights turned on")
 
-print(wipers < hazard_lights)
+# print(wipers < hazard_lights)
