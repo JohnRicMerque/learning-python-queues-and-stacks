@@ -10,7 +10,7 @@ class IterableMixin:
         while len(self) > 0:
             yield self.dequeue()
 
-class Queue:
+class Queue(IterableMixin):
     def __init__(self, *elements):
         self._elements = deque(elements)
 
@@ -111,7 +111,7 @@ from collections import deque
 from heapq import heappop, heappush
 from itertools import count
 
-class PriorityQueue:
+class PriorityQueue(IterableMixin):
     def __init__(self):
         self._elements = []
         self._counter = count()
@@ -127,7 +127,7 @@ class PriorityQueue:
 
 # TESTING PRIORITY QUEUE CLASS
 
-from queues import PriorityQueue
+# from queues import PriorityQueue
 
 # CRITICAL = 3
 # IMPORTANT = 2
