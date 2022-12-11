@@ -22,6 +22,12 @@ def main(args):
         for _ in range(args.consumers)
     ]
 
+class View:
+    def __init__(self, buffer, producers, consumers):
+        self.buffer = buffer
+        self.producers = producers
+        self.consumers = consumers   
+
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("-q", "--queue", choices=QUEUE_TYPES, default="fifo")
