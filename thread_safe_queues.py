@@ -4,6 +4,8 @@ import threading
 from random import choice, randint
 from time import sleep
 from itertools import zip_longest
+from dataclasses import dataclass, field
+from enum import IntEnum
 
 from rich.align import Align
 from rich.columns import Columns
@@ -16,6 +18,14 @@ QUEUE_TYPES = {
     "lifo": LifoQueue,
     "heap": PriorityQueue
 }
+
+@dataclass(order=True)
+class Product:
+    priority: int
+    label: str = field(compare=False)
+
+    def __str__(self):
+        return self.label
 
 def main(args):
     buffer = QUEUE_TYPES[args.queue]()
