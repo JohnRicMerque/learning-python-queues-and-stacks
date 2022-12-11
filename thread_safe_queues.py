@@ -19,3 +19,8 @@ def parse_args():
     parser.add_argument("-cs", "--consumer-speed", type=int, default=1)
     return parser.parse_args()
 
+if __name__ == "__main__":
+    try:
+        main(parse_args())
+    except KeyboardInterrupt:
+        pass
