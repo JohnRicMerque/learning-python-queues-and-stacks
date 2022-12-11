@@ -28,6 +28,15 @@ def main(args):
         for _ in range(args.consumers)
     ]
 
+    for producer in producers:
+        producer.start()
+
+    for consumer in consumers:
+        consumer.start()
+
+    view = View(buffer, producers, consumers)
+    view.animate()
+
 class View:
     def __init__(self, buffer, producers, consumers):
         self.buffer = buffer
