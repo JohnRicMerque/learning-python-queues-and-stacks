@@ -26,7 +26,12 @@ class View:
     def __init__(self, buffer, producers, consumers):
         self.buffer = buffer
         self.producers = producers
-        self.consumers = consumers   
+        self.consumers = consumers
+
+    def animate(self):
+        with Live(self.render(), screen=True, refresh_per_second=10) as live:
+            while True:
+                live.update(self.render())   
 
 def parse_args():
     parser = argparse.ArgumentParser()
