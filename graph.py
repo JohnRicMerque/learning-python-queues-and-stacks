@@ -1,6 +1,6 @@
 import networkx as nx
 import os
-os.add_dll_directory("C:/Program Files/Graphviz/bin") # adding my directory path for graphviz to fix import module on my pc
+os.add_dll_directory("C:/Program Files/Graphviz/bin") # adding my directory path for graphviz to fix import module error on my pc
 from typing import NamedTuple
 
 class City(NamedTuple):
@@ -39,3 +39,6 @@ def by_distance(weights):
     return float(weights["distance"])
 
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
+
+for neighbor, weights in sort_by(graph[nodes["london"]], by_distance):
+    print(f"{weights['distance']:>3} miles, {neighbor.name}")
