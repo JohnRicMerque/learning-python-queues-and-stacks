@@ -33,5 +33,6 @@ def load_graph(filename, node_factory):
     )
 
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
-print(nodes["london"])
-print(graph)
+
+for neighbor in graph.neighbors(nodes["london"]):
+    print(neighbor.name)
