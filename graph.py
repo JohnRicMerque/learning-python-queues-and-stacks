@@ -1,6 +1,6 @@
 import networkx as nx
 import os
-os.add_dll_directory("C:/Program Files/Graphviz/bin")
+os.add_dll_directory("C:/Program Files/Graphviz/bin") # adding my directory path for graphviz to fix import module on my pc
 from typing import NamedTuple
 
 class City(NamedTuple):
