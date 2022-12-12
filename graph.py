@@ -34,5 +34,5 @@ def load_graph(filename, node_factory):
 
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
-for neighbor in graph.neighbors(nodes["london"]):
-    print(neighbor.name)
+for neighbor, weights in graph[nodes["london"]].items():
+    print(weights["distance"], neighbor.name)
