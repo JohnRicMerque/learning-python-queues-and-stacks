@@ -2,6 +2,7 @@ import networkx as nx
 import os
 os.add_dll_directory("C:/Program Files/Graphviz/bin") # adding my directory path for graphviz to fix import module error on my pc
 from typing import NamedTuple
+from queues import Queue
 
 class City(NamedTuple):
     name: str
@@ -46,6 +47,17 @@ def order(neighbors):
         return city.latitude
     return iter(sorted(neighbors, key=by_latitude, reverse=True))
 
+def breadth_first_traverse(graph, source):
+    queue = Queue(source)
+    visited = {source}
+    while queue:
+        yield (node := queue.dequeue())
+        for neighbor in graph.neighbors(node):
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.enqueue(neighbor)
+
+
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 # TESTS
@@ -86,11 +98,12 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 #     else:
 #         print("Not found")
 
+# BREAD FIRST SEARCH FOR 20TH CENTURY CITY STARTING WITH HIGHER LATITUDE TEST 
+# for node in nx.bfs_tree(graph, nodes["edinburgh"], sort_neighbors=order):
+#     print("📍", node.name)
+#     if is_twentieth_century(node.year):
+#         print("Found:", node.name, node.year)
+#         break
+#     else:
+#         print("Not found")
 
-for node in nx.bfs_tree(graph, nodes["edinburgh"], sort_neighbors=order):
-    print("📍", node.name)
-    if is_twentieth_century(node.year):
-        print("Found:", node.name, node.year)
-        break
-    else:
-        print("Not found")
