@@ -3,6 +3,7 @@ import os
 os.add_dll_directory("C:/Program Files/Graphviz/bin") # adding my directory path for graphviz to fix import module error on my pc
 from typing import NamedTuple
 from queues import Queue
+from collections import deque
 
 class City(NamedTuple):
     name: str
@@ -61,7 +62,7 @@ def breadth_first_search(graph, source, predicate):
     for node in breadth_first_traverse(graph, source):
         if predicate(node):
             return node
-            
+
 def shortest_path(graph, source, destination, order_by=None):
     queue = Queue(source)
     visited = {source}
@@ -78,6 +79,19 @@ def shortest_path(graph, source, destination, order_by=None):
                 previous[neighbor] = node
                 if neighbor == destination:
                     return retrace(previous, source, destination)
+
+def retrace(previous, source, destination):
+    path = deque()
+
+    current = destination
+    while current != source:
+        path.appendleft(current)
+        current = previous.get(current)
+        if current is None:
+            return None
+
+    path.appendleft(source)
+    return list(path)
 
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
@@ -136,8 +150,8 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 
 # SHORTEST PATH USING BREADTH FIRST TRAVERSAL TEST
-city1 = nodes["aberdeen"]
-city2 = nodes["perth"]
+# city1 = nodes["aberdeen"]
+# city2 = nodes["perth"]
 
-for i, path in enumerate(nx.all_shortest_paths(graph, city1, city2), 1):
-    print(f"{i}.", " → ".join(city.name for city in path))
+# for i, path in enumerate(nx.all_shortest_paths(graph, city1, city2), 1):
+#     print(f"{i}.", " → ".join(city.name for city in path))
