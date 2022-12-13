@@ -161,7 +161,9 @@ def dijkstra_shortest_path(graph, source, destination, weight_factory):
 
 def distance(weights):
     return float(weights["distance"])
-    
+
+def weight(node1, node2, weights):
+    return distance(weights)
 
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
@@ -266,4 +268,7 @@ city1 = nodes["london"]
 city2 = nodes["edinburgh"]
 
 for city in dijkstra_shortest_path(graph, city1, city2, distance):
+    print(city.name)
+
+for city in nx.dijkstra_path(graph, city1, city2, weight):
     print(city.name)
