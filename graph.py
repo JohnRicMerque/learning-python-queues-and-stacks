@@ -101,6 +101,8 @@ def connected(graph, source, destination):
 
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
+
+
 # TEST SCRIPTS
 
 
@@ -172,6 +174,17 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 # SHORTEST PATH WITH PREFERENCE TO NEIGHBORS OF HIGHER LATITUDE TEST
 # print(" → ".join(city.name for city in shortest_path(graph, city1, city2, by_latitude)))
 
+
 # CONNECTED FUNCTION TEST
-print(connected(graph, nodes["belfast"], nodes["glasgow"]))
-print(connected(graph, nodes["belfast"], nodes["derry"]))
+# print(connected(graph, nodes["belfast"], nodes["glasgow"]))
+# print(connected(graph, nodes["belfast"], nodes["derry"]))
+
+
+# DEPTH-FIRST SEARCH USING A LIFO QUEUE 
+for node in nx.dfs_tree(graph, nodes["edinburgh"]):
+    print("📍", node.name)
+    if is_twentieth_century(node.year):
+        print("Found:", node.name, node.year)
+        break
+    else:
+        print("Not found")
