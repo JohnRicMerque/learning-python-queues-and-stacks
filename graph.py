@@ -2,8 +2,9 @@ import networkx as nx
 import os
 os.add_dll_directory("C:/Program Files/Graphviz/bin") # adding my directory path for graphviz to fix import module error on my pc
 from typing import NamedTuple
-from queues import Queue
+from queues import Queue, Stack
 from collections import deque
+
 
 class City(NamedTuple):
     name: str
@@ -99,6 +100,20 @@ def by_latitude(city):
 def connected(graph, source, destination):
     return shortest_path(graph, source, destination) is not None
 
+def depth_first_traverse(graph, source, order_by=None):
+    stack = Stack(source)
+    visited = set()
+    while stack:
+        if (node := stack.dequeue()) not in visited:
+            yield node
+            visited.add(node)
+            neighbors = list(graph.neighbors(node))
+            if order_by:
+                neighbors.sort(key=order_by)
+            for neighbor in reversed(neighbors):
+                stack.enqueue(neighbor)
+
+
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 
@@ -181,10 +196,10 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 
 # DEPTH-FIRST SEARCH USING A LIFO QUEUE 
-for node in nx.dfs_tree(graph, nodes["edinburgh"]):
-    print("📍", node.name)
-    if is_twentieth_century(node.year):
-        print("Found:", node.name, node.year)
-        break
-    else:
-        print("Not found")
+# for node in nx.dfs_tree(graph, nodes["edinburgh"]):
+#     print("📍", node.name)
+#     if is_twentieth_century(node.year):
+#         print("Found:", node.name, node.year)
+#         break
+#     else:
+#         print("Not found")
