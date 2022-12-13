@@ -93,6 +93,10 @@ def retrace(previous, source, destination):
     path.appendleft(source)
     return list(path)
 
+def by_latitude(city):
+    return -city.latitude
+
+
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 # TEST SCRIPTS
@@ -160,4 +164,8 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 # SHORTEST PATH NATURAL ORDER OF NEIGHBORS TEST
 city1 = nodes["aberdeen"]
 city2 = nodes["perth"]
-print(" → ".join(city.name for city in shortest_path(graph, city1, city2)))
+# print(" → ".join(city.name for city in shortest_path(graph, city1, city2)))
+
+
+# SHORTEST PATH WITH PREFERENCE TO NEIGHBORS OF HIGHER LATITUDE TEST
+print(" → ".join(city.name for city in shortest_path(graph, city1, city2, by_latitude)))
