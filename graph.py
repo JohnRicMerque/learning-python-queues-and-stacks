@@ -155,3 +155,9 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 # for i, path in enumerate(nx.all_shortest_paths(graph, city1, city2), 1):
 #     print(f"{i}.", " → ".join(city.name for city in path))
+
+
+# SHORTEST PATH NATURAL ORDER OF NEIGHBORS TEST
+city1 = nodes["aberdeen"]
+city2 = nodes["perth"]
+print(" → ".join(city.name for city in shortest_path(graph, city1, city2)))
