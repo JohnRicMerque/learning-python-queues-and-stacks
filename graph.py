@@ -4,7 +4,6 @@ os.add_dll_directory("C:/Program Files/Graphviz/bin") # adding my directory path
 from typing import NamedTuple
 from queues import Queue, Stack
 from collections import deque
-from graph import depth_first_search as dfs
 from math import inf as infinity
 from queues import MutableMinHeap, Queue, Stack
 
@@ -159,8 +158,11 @@ def dijkstra_shortest_path(graph, source, destination, weight_factory):
                     previous[neighbor] = node
 
     return retrace(previous, source, destination)
+
+def distance(weights):
+    return float(weights["distance"])
     
-    
+
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
 
@@ -255,5 +257,13 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 # for city in depth_first_traverse(graph, nodes["edinburgh"]):
 #     print(city.name)
 
+# from graph import depth_first_search as dfs
 # city = dfs(graph, nodes["edinburgh"], is_twentieth_century)
 # print(city.name)
+
+# TESTING DIJKSTRA’S ALGORITHM
+city1 = nodes["london"]
+city2 = nodes["edinburgh"]
+
+for city in dijkstra_shortest_path(graph, city1, city2, distance):
+    print(city.name)
