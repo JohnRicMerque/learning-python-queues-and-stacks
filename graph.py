@@ -223,3 +223,7 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 #         break
 #     else:
 #         print("Not found")
+
+# MODIFIED BREADTH FIRST SEARCH AND DEPTH FIRST SEARCH TEST
+for city in depth_first_traverse(graph, nodes["edinburgh"]):
+    print(city.name)
