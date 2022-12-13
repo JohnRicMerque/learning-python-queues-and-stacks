@@ -41,12 +41,43 @@ def by_distance(weights):
 def is_twentieth_century(year):
     return year and 1901 <= year <= 2000
 
-nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
-for node in nx.bfs_tree(graph, nodes["edinburgh"]):
-    print("📍", node.name)
-    if is_twentieth_century(node.year):
-        print("Found:", node.name, node.year)
-        break
-    else:
-        print("Not found")
+# TESTS
+
+
+# READING DOT FILE TEST
+# graph = nx.nx_agraph.read_dot("roadmap.dot")
+# print(graph.nodes["london"])
+
+
+# GRAPH INSTANTIATION AND NODE IDENTIFIERS TEST
+# nodes, graph = load_graph("roadmap.dot", City.from_dict)
+# print(nodes["london"])
+# print(graph)
+
+
+# NEIGHBORS IDENTIFIERS TEST
+# for neighbor in graph.neighbors(nodes["london"]):
+#     print(neighbor.name)
+
+
+# NEIGHBORS WITH NODE WEIGHTS TEST 
+# for neighbor, weights in graph[nodes["london"]].items():
+#     print(weights["distance"], neighbor.name)
+
+
+# SORTED NEIGHBORS WITH NODE WEIGHTS TEST
+# for neighbor, weights in sort_by(graph[nodes["london"]], by_distance):
+#     print(f"{weights['distance']:>3} miles, {neighbor.name}")
+
+
+# BREAD FIRST SEARCH FOR 20TH CENTURY CITY TEST
+# for node in nx.bfs_tree(graph, nodes["edinburgh"]):
+#     print("📍", node.name)
+#     if is_twentieth_century(node.year):
+#         print("Found:", node.name, node.year)
+#         break
+#     else:
+#         print("Not found")
+
+nodes, graph = load_graph("roadmap.dot", City.from_dict)
