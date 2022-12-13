@@ -59,10 +59,8 @@ def breadth_first_traverse(graph, source):
                 visited.add(neighbor)
                 queue.enqueue(neighbor)
 
-def breadth_first_search(graph, source, predicate):
-    for node in breadth_first_traverse(graph, source):
-        if predicate(node):
-            return node
+def breadth_first_search(graph, source, predicate, order_by=None):
+    return search(breadth_first_traverse, graph, source, predicate, order_by)
 
 def shortest_path(graph, source, destination, order_by=None):
     queue = Queue(source)
@@ -127,6 +125,14 @@ def recursive_depth_first_traverse(graph, source, order_by=None):
                 yield from visit(neighbor)
 
     return visit(source)
+
+def depth_first_search(graph, source, predicate, order_by=None):
+    return search(depth_first_traverse, graph, source, predicate, order_by)
+
+def search(traverse, graph, source, predicate, order_by=None):
+    for node in traverse(graph, source, order_by):
+        if predicate(node):
+            return node
     
 nodes, graph = load_graph("roadmap.dot", City.from_dict)
 
