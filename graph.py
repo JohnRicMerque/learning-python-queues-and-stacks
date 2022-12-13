@@ -44,6 +44,9 @@ def by_distance(weights):
 def is_twentieth_century(year):
     return year and 1901 <= year <= 2000
 
+def is_twentieth_century(city):
+    return city.year and 1901 <= city.year <= 2000
+
 def order(neighbors):
     def by_latitude(city):
         return city.latitude
@@ -225,5 +228,10 @@ nodes, graph = load_graph("roadmap.dot", City.from_dict)
 #         print("Not found")
 
 # MODIFIED BREADTH FIRST SEARCH AND DEPTH FIRST SEARCH TEST
-for city in depth_first_traverse(graph, nodes["edinburgh"]):
-    print(city.name)
+# for city in depth_first_traverse(graph, nodes["edinburgh"]):
+#     print(city.name)
+
+from graph import depth_first_search as dfs
+
+city = dfs(graph, nodes["edinburgh"], is_twentieth_century)
+print(city.name)
