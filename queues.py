@@ -1,6 +1,7 @@
 # BUILDING QUEUE DATA TYPE
 
 from collections import deque
+from dataclasses import dataclass
 
 class IterableMixin:
     def __len__(self):
@@ -159,4 +160,11 @@ class PriorityQueue(IterableMixin):
 # hazard_lights = Message("Hazard lights turned on")
 
 # print(wipers < hazard_lights)
+
+
+@dataclass(order=True)
+class Element:
+    priority: float
+    count: int
+    value: Any
 
